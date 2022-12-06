@@ -1,0 +1,73 @@
+﻿@model List<Aluno>
+
+
+@{
+	ViewData["Title"] = "Index";
+}
+<div class="text-center">
+
+
+	<p class="d-grid gap-2 d-mds-flex justify-content-md-start">
+		<br />
+		<br />
+		<a class="btn btn-primary " role="button" asp-action="Create">Cadastrar novo aluno</a>
+	</p>
+	<h1 display-4> Lista de alunos</h1>
+	<table class="table table-light table-striped table-hover">
+		<thead>
+			<tr class="table-dark">
+				<th scope="col">
+					Nome
+				</th>
+				<th scope="col">
+					Idade
+				</th>
+				<th>
+					CPF
+				</th>
+				<th>
+					Modalidades
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Nome)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Idade)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Cpf)
+					</td>
+					<td>
+						
+						@foreach (var m in item.ModalidadesAlunos)
+						{
+							GerenciadorCtDbContext c = new GerenciadorCtDbContext();
+							Modalidade mod = c.Modalidades.Find(@m.FkModalidades);
+							@mod.Nome;
+							
+						}
+
+
+
+
+
+					</td>
+					<td>
+						<div class="btn-group" role="group" aria-label="Basic example">
+							<a role="button" class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25px" /></a> &nbsp;
+							<a role="button" class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.Id"><img src="~/luta.png" width="25px" /></a> &nbsp;
+							<a ole="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" width="25px"/></a>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

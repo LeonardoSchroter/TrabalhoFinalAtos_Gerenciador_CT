@@ -1,0 +1,48 @@
+﻿@model Gerenciador_CT.Repositorio.AlunoModalidadesRepositorio
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Aluno</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="aluno.Nome" class="control-label"></label>
+                <input asp-for="aluno.Nome" class="form-control" />
+                <span asp-validation-for="aluno.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="aluno.Idade" class="control-label"></label>
+                <input asp-for="aluno.Idade" class="form-control" />
+                <span asp-validation-for="aluno.Idade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="aluno.Cpf" class="control-label"></label>
+                <input asp-for="aluno.Cpf" class="form-control" />
+                <span asp-validation-for="aluno.Cpf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nomeModalidade" class="control-label"></label>
+                <input asp-for="nomeModalidade" class="form-control" />
+                <span asp-validation-for="nomeModalidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

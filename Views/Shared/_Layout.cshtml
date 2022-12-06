@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Gerenciador CT</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Gerenciador_CT.styles.css" asp-append-version="true" />
+</head>
+<body>
+	<header id="header">
+		<nav class="navbar navbar-dark ">
+			<div class="container-fluid">
+				<button id="botaoMenu" class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<span id="simboloBotao" class="navbar-toggler-icon"></span>
+				</button>
+				<span id="logo" class="navbar-brand mb-0 h1">Gerenciador de centros de luta</span>
+
+
+			</div>
+		</nav>
+
+		<div class="modal true" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-fullscreen">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">MENU</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+						<ul  class="list-group list-group-flush">
+							<li class="list-group-item"><a class="linkSide" asp-action="Index" asp-controller="Home">HOME</a> </li>
+							<li class="list-group-item"><a class="linkSide" asp-action="GerenciarAulas" asp-controller="Aulas">AULAS</a></li>
+							<li class="list-group-item"><a class="linkSide" asp-action="GerenciarTreinadores" asp-controller="Treinadores">GERENCIAR TREINADORES</a></li>
+							<li class="list-group-item"><a class="linkSide" asp-action="Index" asp-controller="Alunos">GERENCIAR ALUNOS</a></li>
+							<li class="list-group-item"><a class="linkSide" asp-action="Index" asp-controller="Modalidades">GERENCIAR MODALIDADES</a></li>
+						</ul>
+
+					</div>
+					<div class="float-end">
+						<a class="" id="imgGit" href="https://github.com/LeonardoSchroter"> <img src="~/GitHub-Mark-64px.png" />  </a>
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="container">
+
+		<main role="main" class="pb-3">
+
+
+
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer id="footer2" class="border-top footer text-muted">
+		<div id="footer" class="container">
+			&copy; 2022 - Gerenciador_CT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
