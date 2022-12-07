@@ -1,0 +1,47 @@
+﻿@model Gerenciador_CT.Repositorio.AlunoModalidadesRepositorio
+
+@{
+	ViewData["Title"] = "Editar Modalidades";
+}
+<br>
+<a class="btn btn-primary " role="button" asp-route-id="@Model.aluno.Id" asp-action="NovaModalidade">Cadastrar nova modalidade</a>
+<div class="text-center">
+	<br>
+	
+	<h1>Editar modalidades do aluno @Model.aluno.Nome</h1>
+	<br>
+
+	<div>
+		<h4>Modalidades</h4>
+		<hr />
+		<table class="table table-light table-striped table-hover table-sm table-responsive accordion-item ">
+			<thead>
+				<tr class="table-dark">
+
+					<th>
+						Modalidades
+					</th>
+					<th></th>
+
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.aluno.ModalidadesAlunos)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.FkModalidadesNavigation.Nome)
+						</td>
+						<td>
+
+							<a role="button" asp-action="ExcluirModalidades" asp-controller="Alunos" asp-route-id="@item.Id" class="btn btn-danger btn-sm"> <img src="~/excluir.png" width="25px"></a>
+
+
+
+
+						</td>
+					</tr>
+				}
+		</table>
+	</div>
+</div>
