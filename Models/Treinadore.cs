@@ -13,7 +13,7 @@ public partial class Treinadore
 
     public int? Idade { get; set; }
 
-    public virtual ICollection<Aula> Aulas { get; } = new List<Aula>();
+    public virtual ICollection<Aula> Aulas { get; set; } = new List<Aula>();
 
-    public virtual ICollection<TreinadoresModalidade> TreinadoresModalidades { get; } = new List<TreinadoresModalidade>();
+    public virtual ICollection<TreinadoresModalidade> TreinadoresModalidades { get; set; } = new List<TreinadoresModalidade>();
 }

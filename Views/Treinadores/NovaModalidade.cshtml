@@ -1,0 +1,22 @@
+﻿@model Gerenciador_CT.Repositorio.TreinadorModalidadeRepositorio
+
+
+@{
+	ViewData["Title"] = "Adicionar modalidade";
+}
+<h1>Adicionar modalidade ao treinador</h1>
+
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="AdicionarModalidadeTreinador"  method="post">
+			<input type="hidden" asp-for="treinador.Id"/>
+			<div class="form-group">
+				<label asp-for="nomeModalidade" class="control-label"></label>
+				<input asp-for="nomeModalidade" class="form-control" />
+				<button type="submit"  class="btn btn-primary">Adicionar</button>
+			</div>
+		</form>
+	</div>
+</div>

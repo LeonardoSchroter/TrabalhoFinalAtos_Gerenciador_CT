@@ -128,9 +128,101 @@ namespace Gerenciador_CT.Controllers
             }
             return View(treinadore);
         }
+		public async Task<IActionResult> EditarModalidades(int? id)
+		{
+			if (id == null || _context.Treinadores == null)
+			{
+				return NotFound();
+			}
 
-        // GET: Treinadores/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+			var treinador = await _context.Treinadores.FirstOrDefaultAsync(a => a.Id == id);
+			TreinadorModalidadeRepositorio reTreinador = new TreinadorModalidadeRepositorio();
+			reTreinador.treinador = treinador;
+			reTreinador.treinador.TreinadoresModalidades = _context.TreinadoresModalidades.Where(m => m.FkTreinadores == reTreinador.treinador.Id).ToList();
+
+
+
+			foreach (TreinadoresModalidade a in reTreinador.treinador.TreinadoresModalidades)
+			{
+				reTreinador.modalidadesLista.Add(_context.Modalidades.Find(a.FkModalidades));
+			}
+			if (treinador == null)
+			{
+				return NotFound();
+			}
+
+			return View(reTreinador);
+		}
+
+		public async Task<IActionResult> NovaModalidade(int id)
+		{
+			if (id == null || _context.Treinadores == null)
+			{
+				return NotFound();
+			}
+
+			var treinador = await _context.Treinadores.FindAsync(id);
+			if (treinador == null)
+			{
+				return NotFound();
+			}
+			TreinadorModalidadeRepositorio ReTreinador = new TreinadorModalidadeRepositorio();
+			ReTreinador.treinador = treinador;
+			return View(ReTreinador);
+		}
+
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> AdicionarModalidadeTreinador(TreinadorModalidadeRepositorio reTreinador)
+		{
+			if (reTreinador.treinador == null)
+			{
+				return NotFound("Problemas para cadastrar");
+			}
+			Modalidade m = new Modalidade();
+			m = _context.Modalidades.FirstOrDefault(mod => mod.Nome.ToUpper() == reTreinador.nomeModalidade.ToUpper());
+			if (m == null)
+			{
+				return BadRequest("A modalidade não existe no banco de dados");
+			}
+			reTreinador.treinador = await _context.Treinadores.FindAsync(reTreinador.treinador.Id);
+			TreinadoresModalidade ma = new TreinadoresModalidade();
+            ma.FkTreinadoresNavigation = reTreinador.treinador;
+			ma.FkModalidadesNavigation = m;
+
+
+			_context.TreinadoresModalidades.Add(ma);
+			_context.SaveChanges();
+
+			return RedirectToAction(nameof(Index));
+		}
+
+
+		public async Task<IActionResult> ExcluirModalidades(int id)
+		{
+
+
+			try
+			{
+				TreinadoresModalidade modalidadesTreinador = new TreinadoresModalidade();
+				modalidadesTreinador = _context.TreinadoresModalidades.Find(id);
+				_context.TreinadoresModalidades.Remove(modalidadesTreinador);
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateConcurrencyException)
+			{
+
+				return BadRequest("Algo deu muito errado");
+
+
+
+			}
+			return RedirectToAction(nameof(Index));
+		}
+
+		// GET: Treinadores/Delete/5
+		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Treinadores == null)
             {
