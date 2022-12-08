@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Gerenciador_CT.Models.Treinadore>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Nome)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Cpf)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Idade)
+			</th>
+			<th>
+				Modalidades
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Nome)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Cpf)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Idade)
+				</td>
+				<td>
+					@foreach (var m in item.TreinadoresModalidades)
+					{
+
+						GerenciadorCtDbContext c = new GerenciadorCtDbContext();
+						Modalidade mod = c.Modalidades.Find(@m.FkModalidades);
+						@mod.Nome <br />
+
+
+					}
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+
+			</tr>
+		}
+	</tbody>
+</table>

@@ -144,7 +144,7 @@ namespace Gerenciador_CT.Controllers
 			{
 				if (!string.IsNullOrWhiteSpace(alunoRe.aluno.Cpf) && !string.IsNullOrWhiteSpace(alunoRe.aluno.Nome) && !string.IsNullOrWhiteSpace(alunoRe.aluno.Idade.ToString()) && !string.IsNullOrWhiteSpace(alunoRe.nomeModalidade))
 				{
-					alunoRe.Modalidade = _context.Modalidades.FirstOrDefault(m => m.Nome == alunoRe.nomeModalidade);
+					alunoRe.Modalidade = _context.Modalidades.FirstOrDefault(m => m.Nome.ToUpper() == alunoRe.nomeModalidade.ToUpper());
 					alunoRe.lista.FkAlunos = alunoRe.aluno.Id;
 					alunoRe.lista.FkModalidades = alunoRe.Modalidade.Id;
 					alunoRe.aluno.ModalidadesAlunos.Add(alunoRe.lista);

@@ -11,6 +11,8 @@ namespace Gerenciador_CT.Repositorio
 		public string nomeModalidade { get; set; }
 		public List<ModalidadesAluno> modalidadeAlunosLista { get; set; }
 		public List<Modalidade> modalidadesLista { get; set; }
+		private readonly GerenciadorCtDbContext _context;
+		public List<Modalidade> todasModalidades { get; set; }
 
 		public AlunoModalidadesRepositorio()
 		{
@@ -19,6 +21,8 @@ namespace Gerenciador_CT.Repositorio
 			Modalidade= new Modalidade();
 			modalidadeAlunosLista = new List<ModalidadesAluno>();
 			modalidadesLista = new List<Modalidade>();
+			_context = new GerenciadorCtDbContext();
+			todasModalidades= _context.Modalidades.ToList();
 		}
 				
 		
