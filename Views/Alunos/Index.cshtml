@@ -34,6 +34,7 @@
 		<tbody>
 			@foreach (var item in Model)
 			{
+
 				<tr>
 					<td>
 						@Html.DisplayFor(modelItem => item.Nome)
@@ -63,9 +64,9 @@
 					</td>
 					<td>
 						<div class="btn-group" role="group" aria-label="Basic example">
-							<a role="button" class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25px" /></a> &nbsp;
-							<a role="button" class="btn btn-success btn-sm" asp-action="EditarModalidades" asp-route-id="@item.Id"><img src="~/luta.png" width="25px" /></a> &nbsp;
-							<a role="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" width="25px"/></a>
+							<a role="button" class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp;
+							<a role="button" class="btn btn-success btn-sm" asp-action="EditarModalidades" asp-route-id="@item.Id"><img src="~/luta.png" width="25" /></a> &nbsp;
+							<a role="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" width="25"/></a>
 						</div>
 					</td>
 				</tr>

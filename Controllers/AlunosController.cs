@@ -24,7 +24,7 @@ namespace Gerenciador_CT.Controllers
 		{
 
 			List<Aluno> alunos = new List<Aluno>();
-			alunos = (from Aluno a in _context.Alunos select a).Include(a => a.ModalidadesAlunos).ToList<Aluno>();
+			alunos =  (from Aluno a in _context.Alunos select a).Include(a => a.ModalidadesAlunos).ToList<Aluno>();
 			return View(alunos);
 		}
 

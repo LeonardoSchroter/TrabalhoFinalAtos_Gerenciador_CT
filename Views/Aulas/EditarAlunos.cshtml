@@ -1,0 +1,55 @@
+﻿@model Gerenciador_CT.Repositorio.AulaRepositorio
+
+@{
+	ViewData["Title"] = "Editar Alunos";
+}
+<br>
+<a class="btn btn-primary " role="button" asp-route-id="@Model.aluno.Id" asp-action="NovaModalidade">Cadastrar nova modalidade</a>
+<div class="text-center">
+	<br>
+
+	<h1>Editar os alunos que participarão desta aula</h1>
+	<br>
+
+	<div>
+		<h4>Modalidades</h4>
+		<hr />
+		
+		<table class="table table-light table-striped table-hover table-sm table-responsive accordion-item ">
+			<thead>
+				<tr class="table-dark">
+
+					<th>
+						Alunos
+					</th>
+					<th></th>
+
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.alunoLista)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Nome)
+						</td>
+						<td>
+							@foreach(var a in item.AlunoAulas)
+							{
+								if (a.FkAula == Model.aula.Id)
+								{
+									<a role="button" asp-controller="Aulas" asp-route-id=" @a.Id" asp-action="DeleteAluno" class="btn btn-danger btn-sm"> <img src="~/excluir.png" width="25"></a>
+								}
+							}
+							<input type="hidden" asp-for="aula.Id">
+							
+
+
+
+
+						</td>
+					</tr>
+				}
+		</table>
+	</div>
+</div>

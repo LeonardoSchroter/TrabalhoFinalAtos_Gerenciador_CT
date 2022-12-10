@@ -1,0 +1,63 @@
+﻿@model Gerenciador_CT.Repositorio.AulaRepositorio
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.aula.FkTreinadorNavigation.Nome)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+			</th>
+			<th>Alunos</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.aulaLista)
+		{
+			<input type="hidden" asp-for="aula.Id" />
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+				</td>
+				<td>
+					@foreach (var item2 in Model.alunoLista)
+					{
+						foreach (var item3 in item2.AlunoAulas)
+						{
+							if (item3.FkAula == item.Id)
+							{
+								@Html.DisplayFor(modelItem => item2.Nome) 
+								<br />
+							}
+						}
+					}
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-action="EditarAlunos" asp-route-id="@item.Id">Alunos</a> |
+					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

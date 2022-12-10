@@ -1,0 +1,58 @@
+﻿@model Gerenciador_CT.Repositorio.AulaRepositorio
+
+@{
+	ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Aula</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="aula.Id" />
+			<div class="form-group">
+				<label asp-for="aula.FkTreinadorNavigation.Nome" class="control-label"></label>
+				<input asp-for="aula.FkTreinadorNavigation.Nome" class="form-control" />
+				<span asp-validation-for="aula.FkTreinadorNavigation.Nome" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="horario.Dia" class="control-label"></label>
+
+				<select asp-for="aula.FkHorarioNavigation.Dia">
+					<option value="Segunda-Feira">Segunda-feira</option>
+					<option value="Terça-Feira">Terça-feira</option>
+					<option value="Quarta-feira">Quarta-feira</option>
+					<option value="Quinta-Feira">Quinta-feira</option>
+					<option value="Sexta-Feira">Sexta-feira</option>
+					<option value="Sabádo">Sabádo</option>
+					<option value="Domingo">Domingo</option>
+				</select>
+
+
+			</div>
+			<div class="form-group">
+
+				<label asp-for="aula.FkHorarioNavigation.Hora" class="control-label"></label>
+				<input type="time" asp-for="aula.FkHorarioNavigation.Hora" class="form-control" />
+				<span asp-validation-for="aula.FkHorarioNavigation.Hora" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Edit" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
