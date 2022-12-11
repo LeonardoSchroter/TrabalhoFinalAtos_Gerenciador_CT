@@ -32,6 +32,7 @@ namespace Gerenciador_CT.Controllers
 					aulaRe.alunoLista = _context.Alunos.Include(a => a.AlunoAulas).ToList();
 				}
 			}
+			
 
 			return View(aulaRe);
 		}
@@ -81,6 +82,71 @@ namespace Gerenciador_CT.Controllers
 			}
 
 
+
+			return RedirectToAction(nameof(Index));
+		}
+
+
+		public async Task<IActionResult> NovoAluno(int id)
+		{
+			if (id == null || _context.Aulas == null)
+			{
+				return NotFound();
+			}
+
+			AulaRepositorio aulaRe = new AulaRepositorio();
+			aulaRe.aula =  _context.Aulas.Include(a => a.AlunoAulas).FirstOrDefault(a => a.Id == id); 
+			if (aulaRe.aula == null)
+			{
+				return NotFound();
+			}
+			List<Aluno> alunos = aulaRe.todosAlunos;
+			foreach(Aluno item in aulaRe.todosAlunos.ToList())
+			{
+				foreach(var item1 in aulaRe.aula.AlunoAulas)
+				{
+					if(item.Id == item1.FkAluno)
+					{
+						alunos.Remove(item);
+					}
+				}
+				
+			}
+
+
+			ViewBag.alunosSelectList = new SelectList(alunos,"Id", "Nome");  //aulaRe.todosAlunos;
+			
+			return View(aulaRe);
+		}
+		
+
+
+			
+
+			
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> AdicionarAlunoAula(AulaRepositorio reAula)
+		{
+			if (reAula.aula == null)
+			{
+				return NotFound("Problemas para cadastrar");
+			}
+			Aluno aluno = new Aluno();
+			AlunoAula alunoAula = new AlunoAula();
+			aluno = _context.Alunos.FirstOrDefault(mod => mod.Id == reAula.aluno.Id);
+			if (alunoAula == null)
+			{
+				return BadRequest(" Algo está errado");
+			}
+			reAula.aula = await _context.Aulas.FindAsync(reAula.aula.Id);
+			 
+			alunoAula.FkAulaNavigation = reAula.aula;
+			alunoAula.FkAlunoNavigation = aluno;
+
+
+			_context.AlunoAulas.Add(alunoAula);
+			_context.SaveChanges();
 
 			return RedirectToAction(nameof(Index));
 		}

@@ -1,4 +1,5 @@
 ﻿using Gerenciador_CT.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gerenciador_CT.Repositorio
 {
@@ -12,10 +13,12 @@ namespace Gerenciador_CT.Repositorio
 		public List<Aula> aulaLista { get; set; }
 		public List <AlunoAula> alunoAulaLista { get; set; }
 		public List<Aluno> alunoLista { get; set; }
-		
+		public List<Aluno> todosAlunos { get; set; }
+		public readonly GerenciadorCtDbContext _context;
 
 		public AulaRepositorio()
 		{
+			_context= new GerenciadorCtDbContext();
 			aula = new Aula();
 			aluno = new Aluno();
 			alunoAula = new AlunoAula();
@@ -24,6 +27,7 @@ namespace Gerenciador_CT.Repositorio
 			aulaLista = new List<Aula>();
 			alunoAulaLista = new List<AlunoAula>();
 			alunoLista = new List<Aluno>();
+			todosAlunos = _context.Alunos.ToList();
 		}
 	}
 }

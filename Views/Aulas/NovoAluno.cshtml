@@ -1,0 +1,20 @@
+﻿@model Gerenciador_CT.Repositorio.AulaRepositorio
+
+
+@{
+	ViewData["Title"] = "Adicionar Alunos a esta aula";
+}
+<h1>Adicionar modalidade ao aluno</h1>
+
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form class="form-control " Asp-action="AdicionarAlunoAula">
+			<input type="hidden" asp-for="aula.Id" />
+			@Html.DropDownListFor(model => model.aluno.Id,ViewBag.alunosSelectList as SelectList,"--Selecione o aluno--", new {@class = "form-control"})
+			<button class="btn btn-primary" type="submit">Adicionar </button>
+		</form>
+	</div>
+
+</div>
