@@ -1,48 +1,48 @@
 ﻿@model Gerenciador_CT.Repositorio.TreinadorModalidadeRepositorio
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Criar novo treinador";
 }
+<div class="text-center">
+	<h1 class="display-4">Adicionar novo treinador</h1>
 
-<h1>Create</h1>
 
-<h4>Treinadores</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+	<hr />
 
-        <form asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="treinador.Nome" class="control-label"></label>
-                <input asp-for="treinador.Nome" class="form-control" />
-                <span asp-validation-for="treinador.Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="treinador.Cpf" class="control-label"></label>
-                <input asp-for="treinador.Cpf" class="form-control" />
-                <span asp-validation-for="treinador.Cpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="treinador.Idade" class="control-label"></label>
-                <input asp-for="treinador.Idade" class="form-control" />
-                <span asp-validation-for="treinador.Idade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Modalidade</label>
-                @Html.DropDownListFor(model => model.Modalidade.Id,ViewBag.modalidadesSelectList as SelectList,"--Selecione a modalidade--", new {@class = "form-control"})
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+
+	<form asp-action="Create" method="post">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<div class="mb-3">
+			<label asp-for="treinador.Nome" class="control-label"></label>
+			<input asp-for="treinador.Nome" class="form-control" />
+			<span asp-validation-for="treinador.Nome" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="treinador.Cpf" class="control-label"></label>
+			<input asp-for="treinador.Cpf" class="form-control" />
+			<span asp-validation-for="treinador.Cpf" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="treinador.Idade" class="control-label"></label>
+			<input asp-for="treinador.Idade" class="form-control" />
+			<span asp-validation-for="treinador.Idade" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label class="control-label">Modalidade</label>
+			@Html.DropDownListFor(model => model.Modalidade.Id,ViewBag.modalidadesSelectList as SelectList,"--Selecione a modalidade--", new {@class = "form-control"})
+		</div>
+		<div class="d-grid gap-2">
+			<input type="submit" value="Criar" class="btn btn-primary" />
+			<a class="btn btn-dark" asp-action="Index">Voltar</a>
+		</div>
+	</form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

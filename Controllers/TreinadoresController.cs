@@ -171,7 +171,7 @@ namespace Gerenciador_CT.Controllers
 			
 			TreinadorModalidadeRepositorio ReTreinador = new TreinadorModalidadeRepositorio();
 			List<Modalidade> modalidades = _context.Modalidades.ToList();
-			foreach (Modalidade item in modalidades)
+			foreach (Modalidade item in modalidades.ToList())
 			{
 				foreach (var item1 in treinador.TreinadoresModalidades)
 				{

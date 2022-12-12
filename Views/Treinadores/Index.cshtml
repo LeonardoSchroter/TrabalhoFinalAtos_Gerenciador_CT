@@ -3,61 +3,62 @@
 @{
 	ViewData["Title"] = "Index";
 }
+<div class="text-center">
 
-<h1>Index</h1>
-
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Nome)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Cpf)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Idade)
-			</th>
-			<th>
-				Modalidades
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Nome)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Cpf)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Idade)
-				</td>
-				<td>
-					@foreach (var m in item.TreinadoresModalidades)
-					{
-
-						GerenciadorCtDbContext c = new GerenciadorCtDbContext();
-						Modalidade mod = c.Modalidades.Find(@m.FkModalidades);
-						@mod.Nome <br />
-
-
-					}
-				</td>
-				<td>
-					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-					<a asp-action="EditarModalidades" asp-route-id="@item.Id">Editar modalidade</a> |
-					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-				</td>
-
+	<p class="d-grid gap-2 d-mds-flex justify-content-md-start">
+		<a class="btn btn-primary " role="button" asp-action="Create">Adicionar novo treinador</a>
+	</p>
+	<h1 class="display-4">Lista de treinadores</h1>
+	<table class="table table-light table-striped table-hover table-sm table-responsive">
+		<thead>
+			<tr class="table table-dark">
+				<th>
+					@Html.DisplayNameFor(model => model.Nome)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Cpf)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Idade)
+				</th>
+				<th>
+					Modalidades
+				</th>
+				<th></th>
 			</tr>
-		}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Nome)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Cpf)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Idade)
+					</td>
+					<td>
+						@foreach (var m in item.TreinadoresModalidades)
+						{
+
+							GerenciadorCtDbContext c = new GerenciadorCtDbContext();
+							Modalidade mod = c.Modalidades.Find(@m.FkModalidades);
+							@mod.Nome <br />
+
+
+						}
+					</td>
+					<td>
+						<a role="button" class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+						<a role="button" class="btn btn-success btn-sm" asp-action="EditarModalidades" asp-route-id="@item.Id"><img src="~/luta.png" width="25" /></a> |
+						<a role="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" width="25" /></a>
+					</td>
+
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

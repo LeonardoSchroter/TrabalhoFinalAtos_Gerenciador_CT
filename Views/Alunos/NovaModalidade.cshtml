@@ -4,19 +4,27 @@
 @{
 	ViewData["Title"] = "Adicionar modalidade";
 }
-<h1>Adicionar modalidade ao aluno</h1>
+<div class="text-center">
+	<h1 class="display-4">Adicionar modalidade ao treinador</h1>
+
+	<br />
+	<br />
 
 
-<hr />
-<div class="row">
-	<div class="row">
-		<div class="col-md-4">
-			<form class="form-control " Asp-action="AdicionarModalidadeAluno">
-				<input type="hidden" asp-for="aluno.Id" />
-				@Html.DropDownListFor(model => model.Modalidade.Id,ViewBag.modalidadesSelectList as SelectList,"--Selecione a modalidade--", new {@class = "form-control"})
+	<div class="mb-3">
+
+		<form class="form-control " Asp-action="AdicionarModalidadeAluno">
+			<input type="hidden" asp-for="aluno.Id" />
+			@Html.DropDownListFor(model => model.Modalidade.Id,ViewBag.modalidadesSelectList as SelectList,"--Selecione a modalidade--", new {@class = "form-control"})
+			<br />
+			<div class="d-grid gap-2">
 				<button class="btn btn-primary" type="submit">Adicionar </button>
-			</form>
-		</div>
+				<a class="btn btn-dark float-lg-start" asp-action="Index">Voltar</a>
+			</div>
+		</form>
+
 	</div>
+
+	
+	
 </div>
-<a asp-action="EditarModalidade">Voltar</a>
