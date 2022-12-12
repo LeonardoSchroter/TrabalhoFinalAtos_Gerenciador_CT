@@ -9,15 +9,14 @@
 
 <hr />
 <div class="row">
-	<div class="col-md-4">
-		
-		<form asp-action="AdicionarModalidadeAluno"  method="post">
-			<input type="hidden" asp-for="aluno.Id"/>
-			<div class="form-group">
-				<label asp-for="nomeModalidade" class="control-label"></label>
-				<input asp-for="nomeModalidade" class="form-control" />
-				<button type="submit"  class="btn btn-primary">Adicionar</button>
-			</div>
-		</form>
+	<div class="row">
+		<div class="col-md-4">
+			<form class="form-control " Asp-action="AdicionarModalidadeAluno">
+				<input type="hidden" asp-for="aluno.Id" />
+				@Html.DropDownListFor(model => model.Modalidade.Id,ViewBag.modalidadesSelectList as SelectList,"--Selecione a modalidade--", new {@class = "form-control"})
+				<button class="btn btn-primary" type="submit">Adicionar </button>
+			</form>
+		</div>
 	</div>
 </div>
+<a asp-action="EditarModalidade">Voltar</a>

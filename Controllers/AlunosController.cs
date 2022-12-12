@@ -62,13 +62,27 @@ namespace Gerenciador_CT.Controllers
 				return NotFound();
 			}
 
-			var aluno = await _context.Alunos.FindAsync(id);
+			var aluno = _context.Alunos.Include(a => a.ModalidadesAlunos).FirstOrDefault(a=>a.Id == id);
 			if (aluno == null)
 			{
 				return NotFound();
 			}
+			List<Modalidade> modalidades = _context.Modalidades.ToList();
+			foreach (Modalidade item in modalidades.ToList())
+			{
+				foreach (var item1 in aluno.ModalidadesAlunos)
+				{
+					if (item.Id == item1.FkModalidades)
+					{
+						modalidades.Remove(item);
+					}
+				}
+
+			}
 			AlunoModalidadesRepositorio ReAluno = new AlunoModalidadesRepositorio();
 			ReAluno.aluno = aluno;
+			ReAluno.modalidadesLista = modalidades;
+			ViewBag.modalidadesSelectList = new SelectList(modalidades, "Id", "Nome");
 			return View(ReAluno);
 		}
 
@@ -80,19 +94,20 @@ namespace Gerenciador_CT.Controllers
 			{
 				return NotFound("Problemas para cadastrar");
 			}
-			Modalidade m = new Modalidade();
-			m = _context.Modalidades.FirstOrDefault(mod => mod.Nome.ToUpper() == reAluno.nomeModalidade.ToUpper());
-			if (m == null)
+			 Modalidade modalidade= new Modalidade();
+			ModalidadesAluno modalidadeAluno = new ModalidadesAluno();
+			modalidade = _context.Modalidades.FirstOrDefault(mod => mod.Id == reAluno.Modalidade.Id);
+			if (modalidadeAluno == null)
 			{
-				return BadRequest("A modalidade não existe no banco de dados");
+				return BadRequest(" Algo está errado");
 			}
 			reAluno.aluno = await _context.Alunos.FindAsync(reAluno.aluno.Id);
-			ModalidadesAluno ma = new ModalidadesAluno();
-			ma.FkAlunosNavigation = reAluno.aluno;
-			ma.FkModalidadesNavigation = m;
-			
-			
-			_context.ModalidadesAlunos.Add(ma);
+
+			modalidadeAluno.FkAlunosNavigation = reAluno.aluno;
+			modalidadeAluno.FkModalidadesNavigation = modalidade;
+
+
+			_context.ModalidadesAlunos.Add(modalidadeAluno);
 			_context.SaveChanges();
 
 			return RedirectToAction(nameof(Index));
@@ -130,6 +145,9 @@ namespace Gerenciador_CT.Controllers
 		// GET: Alunos/Create
 		public IActionResult Create()
 		{
+			
+			List <Modalidade> modalidades = _context.Modalidades.ToList();
+			ViewBag.modalidadesSelectList = new SelectList(modalidades, "Id", "Nome");
 			return View();
 		}
 
@@ -142,9 +160,9 @@ namespace Gerenciador_CT.Controllers
 		{
 			try
 			{
-				if (!string.IsNullOrWhiteSpace(alunoRe.aluno.Cpf) && !string.IsNullOrWhiteSpace(alunoRe.aluno.Nome) && !string.IsNullOrWhiteSpace(alunoRe.aluno.Idade.ToString()) && !string.IsNullOrWhiteSpace(alunoRe.nomeModalidade))
+				if (!string.IsNullOrWhiteSpace(alunoRe.aluno.Cpf) && !string.IsNullOrWhiteSpace(alunoRe.aluno.Nome) && !string.IsNullOrWhiteSpace(alunoRe.aluno.Idade.ToString()) && !string.IsNullOrWhiteSpace(alunoRe.Modalidade.Id.ToString()))
 				{
-					alunoRe.Modalidade = _context.Modalidades.FirstOrDefault(m => m.Nome.ToUpper() == alunoRe.nomeModalidade.ToUpper());
+					
 					alunoRe.lista.FkAlunos = alunoRe.aluno.Id;
 					alunoRe.lista.FkModalidades = alunoRe.Modalidade.Id;
 					alunoRe.aluno.ModalidadesAlunos.Add(alunoRe.lista);

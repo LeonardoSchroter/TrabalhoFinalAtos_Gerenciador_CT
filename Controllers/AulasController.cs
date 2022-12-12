@@ -29,13 +29,20 @@ namespace Gerenciador_CT.Controllers
 			{
 				foreach (var item2 in item.AlunoAulas)
 				{
+
 					aulaRe.alunoLista = _context.Alunos.Include(a => a.AlunoAulas).ToList();
 				}
 			}
-			
+			aulaRe.aulaLista.Sort(delegate (Aula x, Aula y)
+			{
+				return x.FkHorarioNavigation.Hora.CompareTo(y.FkHorarioNavigation.Hora);
+			}) ;
 
 			return View(aulaRe);
 		}
+
+			
+		
 
 		// GET: Aulas/Details/5
 		public async Task<IActionResult> EditarAlunos(int? id)

@@ -48,7 +48,9 @@ namespace Gerenciador_CT.Controllers
         // GET: Treinadores/Create
         public IActionResult Create()
         {
-            return View();
+			List<Modalidade> modalidades = _context.Modalidades.ToList();
+			ViewBag.modalidadesSelectList = new SelectList(modalidades, "Id", "Nome");
+			return View();
         }
 
         // POST: Treinadores/Create
@@ -60,9 +62,9 @@ namespace Gerenciador_CT.Controllers
         {
 			try
 			{
-				if (!string.IsNullOrWhiteSpace(treinadorRepositorio.treinador.Cpf) && !string.IsNullOrWhiteSpace(treinadorRepositorio.treinador.Nome) && !string.IsNullOrWhiteSpace(treinadorRepositorio.treinador.Idade.ToString()) && !string.IsNullOrWhiteSpace(treinadorRepositorio.nomeModalidade))
+				if (!string.IsNullOrWhiteSpace(treinadorRepositorio.treinador.Cpf) && !string.IsNullOrWhiteSpace(treinadorRepositorio.treinador.Nome) && !string.IsNullOrWhiteSpace(treinadorRepositorio.treinador.Idade.ToString()) && !string.IsNullOrWhiteSpace(treinadorRepositorio.Modalidade.ToString()))
 				{
-                    treinadorRepositorio.Modalidade = _context.Modalidades.FirstOrDefault(m => m.Nome.ToUpper() == treinadorRepositorio.nomeModalidade.ToUpper());
+                  
                     treinadorRepositorio.treinadorModalidade.FkTreinadores = treinadorRepositorio.treinador.Id;
                     treinadorRepositorio.treinadorModalidade.FkModalidades = treinadorRepositorio.Modalidade.Id;
                     treinadorRepositorio.treinador.TreinadoresModalidades.Add(treinadorRepositorio.treinadorModalidade);
@@ -161,14 +163,29 @@ namespace Gerenciador_CT.Controllers
 				return NotFound();
 			}
 
-			var treinador = await _context.Treinadores.FindAsync(id);
+            var treinador =  _context.Treinadores.Include(m => m.TreinadoresModalidades).FirstOrDefault(m => m.Id==id); ;
 			if (treinador == null)
 			{
 				return NotFound();
 			}
+			
 			TreinadorModalidadeRepositorio ReTreinador = new TreinadorModalidadeRepositorio();
+			List<Modalidade> modalidades = _context.Modalidades.ToList();
+			foreach (Modalidade item in modalidades)
+			{
+				foreach (var item1 in treinador.TreinadoresModalidades)
+				{
+					if (item.Id == item1.FkModalidades)
+					{
+						modalidades.Remove(item);
+					}
+				}
+
+			}
 			ReTreinador.treinador = treinador;
-			return View(ReTreinador);
+  
+            ViewBag.modalidadesSelectList = new SelectList(modalidades, "Id", "Nome");
+            return View(ReTreinador);
 		}
 
 
@@ -181,7 +198,8 @@ namespace Gerenciador_CT.Controllers
 				return NotFound("Problemas para cadastrar");
 			}
 			Modalidade m = new Modalidade();
-			m = _context.Modalidades.FirstOrDefault(mod => mod.Nome.ToUpper() == reTreinador.nomeModalidade.ToUpper());
+            TreinadoresModalidade modalidadesTreinador = new TreinadoresModalidade();
+			m = _context.Modalidades.FirstOrDefault(mod => mod.Id == reTreinador.Modalidade.Id);
 			if (m == null)
 			{
 				return BadRequest("A modalidade não existe no banco de dados");

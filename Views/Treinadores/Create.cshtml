@@ -29,9 +29,8 @@
                 <span asp-validation-for="treinador.Idade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="nomeModalidade" class="control-label"></label>
-                <input asp-for="nomeModalidade" class="form-control" />
-                <span asp-validation-for="nomeModalidade" class="text-danger"></span>
+                <label class="control-label">Modalidade</label>
+                @Html.DropDownListFor(model => model.Modalidade.Id,ViewBag.modalidadesSelectList as SelectList,"--Selecione a modalidade--", new {@class = "form-control"})
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
