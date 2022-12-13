@@ -4,448 +4,599 @@
 	ViewData["Title"] = "Index";
 }
 
-<h1>Agenda de aulas</h1>
+
 <div class="text-center">
 	<div class="d-grid gap-2 d-mds-flex justify-content-md-start">
 		<p>
 			<a class="btn btn-primary" asp-action="Create">Criar novo</a>
 		</p>
 	</div>
+	<h1 class="display-4">Agenda de aulas</h1>
+	<div class="form-check form-check-inline ">
+		<input type="radio" onclick="esconderTabela()" checked name="diaSemana" value="Segunda-feira">
+		<label for="Segunda-feira">Segunda-feira</label>
+		<input type="radio" onclick="esconderTabela()" name="diaSemana" value="Terça-feira">
+		<label for="Terça-feira">Terça-feira</label>
+		<input type="radio" onclick="esconderTabela()" name="diaSemana" value="Quarta-feira">
+		<label for="Quarta-feira">Quarta-feira</label>
+		<input type="radio" onclick="esconderTabela()" name="diaSemana" value="Quinta-feira">
+		<label for="Quinta-feira">Quinta-feira</label>
+		<input type="radio" onclick="esconderTabela()" name="diaSemana" value="Sexta-feira">
+		<label for="Sexta-feira">Sexta-feira</label>
+		<input type="radio" onclick="esconderTabela()" name="diaSemana" value="Sabado">
+		<label for="Sabado">Sábado</label>
+		<input type="radio" onclick="esconderTabela()" name="diaSemana" value="Domingo">
+		<label for="Domingo">Domingo</label>
 
-	<h3 >Segunda-feira</h3>
-	<table  id="segunda" class="table table-light table-striped table-hover table-sm table-responsive">
-		<thead>
-			<tr class="table-dark">
-				<th>
-					Treinador
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
-				</th>
-				<th>Alunos</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-
-			@foreach (var item in Model.aulaLista)
-			{
-				if (item.FkHorarioNavigation.Dia == "Segunda-Feira")
-				{
-
-
-					<input type="hidden" asp-for="aula.Id" />
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
-						</td>
-						<td>
-							@foreach (var item2 in Model.alunoLista)
-							{
-								foreach (var item3 in item2.AlunoAulas)
-								{
-									if (item3.FkAula == item.Id)
-									{
-										@Html.DisplayFor(modelItem => item2.Nome)
-										<br />
-									}
-								}
-							}
-						</td>
-						<td>
-							<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-							<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-							<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
-						</td>
-					</tr>
-				}
-			}
-		</tbody>
-	</table>
-	<br />
+	</div>
 	<hr />
-	<br />
-	
-	<table id="terca" class="table table-light table-striped table-hover table-sm table-responsive">
-		<thead>
-			<tr class="table-dark">
-				<th>
-					Treinador
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
-				</th>
-				<th>Alunos</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<h3>Terça-feira</h3>
-			@foreach (var item in Model.aulaLista)
-			{
-				if (item.FkHorarioNavigation.Dia == "Terça-feira")
+	<br /> <br />
+	<div id="segunda">
+		<h3>Segunda-feira</h3>
+
+		<table class="table table-light table-striped table-hover table-sm table-responsive ">
+			<thead>
+				<tr class="table-dark">
+					<th>
+						Treinador
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+					</th>
+					<th>Alunos</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+
+				@foreach (var item in Model.aulaLista)
 				{
+					if (item.FkHorarioNavigation.Dia == "Segunda-Feira")
+					{
 
 
-					<input type="hidden" asp-for="aula.Id" />
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
-						</td>
-						<td>
-							@foreach (var item2 in Model.alunoLista)
-							{
-								foreach (var item3 in item2.AlunoAulas)
+						<input type="hidden" asp-for="aula.Id" />
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+							</td>
+							<td>
+								@foreach (var item2 in Model.alunoLista)
 								{
-									if (item3.FkAula == item.Id)
+									foreach (var item3 in item2.AlunoAulas)
 									{
-										@Html.DisplayFor(modelItem => item2.Nome)
-										<br />
+										if (item3.FkAula == item.Id)
+										{
+											@Html.DisplayFor(modelItem => item2.Nome)
+											<br />
+										}
 									}
 								}
-							}
-						</td>
-						<td>
-							<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-							<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-							<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
-						</td>
-					</tr>
+							</td>
+							<td>
+								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
+								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+							</td>
+						</tr>
+					}
 				}
-			}
-		</tbody>
-	</table>
-	<br />
-	<hr />
-	<br />
-	<h3>Quarta-feira</h3>
-	<table id="quarta" class="table table-light table-striped table-hover table-sm table-responsive">
-		<thead>
-			<tr class="table-dark">
-				<th>
-					Treinador
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
-				</th>
-				<th>Alunos</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<br />
+		
+		<br />
+	</div>
+	<div id="terca">
+		<h3>Terça-feira</h3>
+		<table class="table table-light table-striped table-hover table-sm table-responsive">
+			<thead>
+				<tr class="table-dark">
+					<th>
+						Treinador
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+					</th>
+					<th>Alunos</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
 
-			@foreach (var item in Model.aulaLista)
-			{
-				if (item.FkHorarioNavigation.Dia == "Quarta-feira")
+				@foreach (var item in Model.aulaLista)
 				{
+					if (item.FkHorarioNavigation.Dia == "Terça-feira")
+					{
 
 
-					<input type="hidden" asp-for="aula.Id" />
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
-						</td>
-						<td>
-							@foreach (var item2 in Model.alunoLista)
-							{
-								foreach (var item3 in item2.AlunoAulas)
+						<input type="hidden" asp-for="aula.Id" />
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+							</td>
+							<td>
+								@foreach (var item2 in Model.alunoLista)
 								{
-									if (item3.FkAula == item.Id)
+									foreach (var item3 in item2.AlunoAulas)
 									{
-										@Html.DisplayFor(modelItem => item2.Nome)
-										<br />
+										if (item3.FkAula == item.Id)
+										{
+											@Html.DisplayFor(modelItem => item2.Nome)
+											<br />
+										}
 									}
 								}
-							}
-						</td>
-						<td>
-							<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-							<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-							<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
-						</td>
-					</tr>
+							</td>
+							<td>
+								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
+								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+							</td>
+						</tr>
+					}
 				}
-			}
-		</tbody>
-	</table >
-	<br />
-	<hr />
-	<br />
-	<h3>Quinta-feira</h3>
-	<table id="quinta" class="table table-light table-striped table-hover table-sm table-responsive">
-		<thead>
-			<tr class="table-dark">
-				<th>
-					Treinador
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
-				</th>
-				<th>Alunos</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<br />
+		
+		<br />
+	</div>
 
-			@foreach (var item in Model.aulaLista)
-			{
-				if (item.FkHorarioNavigation.Dia == "Quinta-feira")
+	<div id="quarta">
+		<h3>Quarta-feira</h3>
+		<table class="table table-light table-striped table-hover table-sm table-responsive">
+			<thead>
+				<tr class="table-dark">
+					<th>
+						Treinador
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+					</th>
+					<th>Alunos</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+
+				@foreach (var item in Model.aulaLista)
 				{
+					if (item.FkHorarioNavigation.Dia == "Quarta-feira")
+					{
 
 
-					<input type="hidden" asp-for="aula.Id" />
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
-						</td>
-						<td>
-							@foreach (var item2 in Model.alunoLista)
-							{
-								foreach (var item3 in item2.AlunoAulas)
+						<input type="hidden" asp-for="aula.Id" />
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+							</td>
+							<td>
+								@foreach (var item2 in Model.alunoLista)
 								{
-									if (item3.FkAula == item.Id)
+									foreach (var item3 in item2.AlunoAulas)
 									{
-										@Html.DisplayFor(modelItem => item2.Nome)
-										<br />
+										if (item3.FkAula == item.Id)
+										{
+											@Html.DisplayFor(modelItem => item2.Nome)
+											<br />
+										}
 									}
 								}
-							}
-						</td>
-						<td>
-							<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-							<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-							<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
-						</td>
-					</tr>
+							</td>
+							<td>
+								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
+								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+							</td>
+						</tr>
+					}
 				}
-			}
-		</tbody>
-	</table>
-	<br />
-	<hr />
-	<br />
-	<h3>Sexta-feira</h3>
-	<table id="sexta" class="table table-light table-striped table-hover table-sm table-responsive">
-		<thead>
-			<tr class="table-dark">
-				<th>
-					Treinador
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
-				</th>
-				<th>Alunos</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<br />
+		
+		<br />
+	</div>
+	<div id="quinta">
+		<h3>Quinta-feira</h3>
+		<table class="table table-light table-striped table-hover table-sm table-responsive">
+			<thead>
+				<tr class="table-dark">
+					<th>
+						Treinador
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+					</th>
+					<th>Alunos</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
 
-			@foreach (var item in Model.aulaLista)
-			{
-				if (item.FkHorarioNavigation.Dia == "Sexta-feira")
+				@foreach (var item in Model.aulaLista)
 				{
+					if (item.FkHorarioNavigation.Dia == "Quinta-feira")
+					{
 
 
-					<input type="hidden" asp-for="aula.Id" />
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
-						</td>
-						<td>
-							@foreach (var item2 in Model.alunoLista)
-							{
-								foreach (var item3 in item2.AlunoAulas)
+						<input type="hidden" asp-for="aula.Id" />
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+							</td>
+							<td>
+								@foreach (var item2 in Model.alunoLista)
 								{
-									if (item3.FkAula == item.Id)
+									foreach (var item3 in item2.AlunoAulas)
 									{
-										@Html.DisplayFor(modelItem => item2.Nome)
-										<br />
+										if (item3.FkAula == item.Id)
+										{
+											@Html.DisplayFor(modelItem => item2.Nome)
+											<br />
+										}
 									}
 								}
-							}
-						</td>
-						<td>
-							<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-							<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-							<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
-						</td>
-					</tr>
+							</td>
+							<td>
+								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
+								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+							</td>
+						</tr>
+					}
 				}
-			}
-		</tbody>
-	</table>
-	<br />
-	<hr />
-	<br />
-	<h3>Sabádo</h3>
-	<table id="sabado" class="table table-light table-striped table-hover table-sm table-responsive">
-		<thead>
-			<tr class="table-dark">
-				<th>
-					Treinador
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
-				</th>
-				<th>Alunos</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<br />
+		
+		<br />
+	</div>
+	<div id="sexta">
+		<h3>Sexta-feira</h3>
+		<table class="table table-light table-striped table-hover table-sm table-responsive">
+			<thead>
+				<tr class="table-dark">
+					<th>
+						Treinador
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+					</th>
+					<th>Alunos</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
 
-			@foreach (var item in Model.aulaLista)
-			{
-				if (item.FkHorarioNavigation.Dia == "Sabádo")
+				@foreach (var item in Model.aulaLista)
 				{
+					if (item.FkHorarioNavigation.Dia == "Sexta-feira")
+					{
 
 
-					<input type="hidden" asp-for="aula.Id" />
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
-						</td>
-						<td>
-							@foreach (var item2 in Model.alunoLista)
-							{
-								foreach (var item3 in item2.AlunoAulas)
+						<input type="hidden" asp-for="aula.Id" />
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+							</td>
+							<td>
+								@foreach (var item2 in Model.alunoLista)
 								{
-									if (item3.FkAula == item.Id)
+									foreach (var item3 in item2.AlunoAulas)
 									{
-										@Html.DisplayFor(modelItem => item2.Nome)
-										<br />
+										if (item3.FkAula == item.Id)
+										{
+											@Html.DisplayFor(modelItem => item2.Nome)
+											<br />
+										}
 									}
 								}
-							}
-						</td>
-						<td>
-							<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-							<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-							<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
-						</td>
-					</tr>
+							</td>
+							<td>
+								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
+								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+							</td>
+						</tr>
+					}
 				}
-			}
-		</tbody>
-	</table>
-	<br />
-	<hr />
-	<br />
-	<h3>Domingo</h3>
-	<table id="domingo" class="table table-light table-striped table-hover table-sm table-responsive">
-		<thead>
-			<tr class="table-dark">
-				<th>
-					Treinador
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
-				</th>
-				<th>Alunos</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<br />
+		
+		<br />
+	</div>
+	<div id="sabado">
+		<h3>Sabádo</h3>
+		<table class="table table-light table-striped table-hover table-sm table-responsive">
+			<thead>
+				<tr class="table-dark">
+					<th>
+						Treinador
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+					</th>
+					<th>Alunos</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
 
-			@foreach (var item in Model.aulaLista)
-			{
-				if (item.FkHorarioNavigation.Dia == "Domingo")
+				@foreach (var item in Model.aulaLista)
 				{
+					if (item.FkHorarioNavigation.Dia == "Sabádo")
+					{
 
 
-					<input type="hidden" asp-for="aula.Id" />
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
-						</td>
-						<td>
-							@foreach (var item2 in Model.alunoLista)
-							{
-								foreach (var item3 in item2.AlunoAulas)
+						<input type="hidden" asp-for="aula.Id" />
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+							</td>
+							<td>
+								@foreach (var item2 in Model.alunoLista)
 								{
-									if (item3.FkAula == item.Id)
+									foreach (var item3 in item2.AlunoAulas)
 									{
-										@Html.DisplayFor(modelItem => item2.Nome)
-										<br />
+										if (item3.FkAula == item.Id)
+										{
+											@Html.DisplayFor(modelItem => item2.Nome)
+											<br />
+										}
 									}
 								}
-							}
-						</td>
-						<td>
-							<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-							<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-							<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
-						</td>
-					</tr>
+							</td>
+							<td>
+								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
+								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+							</td>
+						</tr>
+					}
 				}
+			</tbody>
+		</table>
+		<br />
+		
+		<br />
+	</div>
+
+	<div id="domingo">
+		<h3>Domingo</h3>
+
+
+		<table class="table table-light table-striped table-hover table-sm table-responsive">
+			<thead>
+				<tr class="table-dark">
+					<th>
+						Treinador
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Dia)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.aula.FkHorarioNavigation.Hora)
+					</th>
+					<th>Alunos</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+
+				@foreach (var item in Model.aulaLista)
+				{
+					if (item.FkHorarioNavigation.Dia == "Domingo")
+					{
+
+
+						<input type="hidden" asp-for="aula.Id" />
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkTreinadorNavigation.Nome)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Dia)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.FkHorarioNavigation.Hora)
+							</td>
+							<td>
+								@foreach (var item2 in Model.alunoLista)
+								{
+									foreach (var item3 in item2.AlunoAulas)
+									{
+										if (item3.FkAula == item.Id)
+										{
+											@Html.DisplayFor(modelItem => item2.Nome)
+											<br />
+										}
+									}
+								}
+							</td>
+							<td>
+								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
+								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
+								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+<style>
+
+
+	#terca {
+		display: none;
+	}
+
+	#quarta {
+		display: none;
+	}
+
+	#quinta {
+		display: none;
+	}
+
+	#sexta {
+		display: none;
+	}
+
+	#sabado {
+		display: none;
+	}
+
+	#domingo {
+		display: none;
+	}
+</style>
+
+<script type="text/javascript">
+	function esconderTabela() {
+		var segunda = document.getElementById("segunda");
+		var terca = document.getElementById("terca");
+		var quarta = document.getElementById("quarta");
+		var quinta = document.getElementById("quinta");
+		var sexta = document.getElementById("sexta");
+		var sabado = document.getElementById("sabado");
+		var domingo = document.getElementById("domingo");
+		var radios = document.getElementsByName("diaSemana");
+
+		for (var i = 0; i <= radios.length; i++) {
+
+			if (radios[i].checked == true && radios[i].value == "Segunda-feira") {
+
+				segunda.style.display = "block";
+				terca.style.display = "none";
+				quarta.style.display = "none";
+				quinta.style.display = "none";
+				sexta.style.display = "none";
+				sabado.style.display = "none";
+				domingo.style.display = "none";
 			}
-		</tbody>
-	</table>
-</div>	
-<script>
-	function esconderTabela(){
+			else if (radios[i].checked == true && radios[i].value == "Terça-feira") {
+
+				segunda.style.display = "none";
+				terca.style.display = "block";
+				quarta.style.display = "none";
+				quinta.style.display = "none";
+				sexta.style.display = "none";
+				sabado.style.display = "none";
+				domingo.style.display = "none";
+			}
+			else if (radios[i].checked == true && radios[i].value == "Quarta-feira") {
+
+				segunda.style.display = "none";
+				terca.style.display = "none";
+				quarta.style.display = "block";
+				quinta.style.display = "none";
+				sexta.style.display = "none";
+				sabado.style.display = "none";
+				domingo.style.display = "none";
+			}
+			else if (radios[i].checked == true && radios[i].value == "Quinta-feira") {
+
+				segunda.style.display = "none";
+				terca.style.display = "none";
+				quarta.style.display = "none";
+				quinta.style.display = "block";
+				sexta.style.display = "none";
+				sabado.style.display = "none";
+				domingo.style.display = "none";
+			}
+			else if (radios[i].checked == true && radios[i].value == "Sexta-feira") {
+
+				segunda.style.display = "none";
+				terca.style.display = "none";
+				quarta.style.display = "none";
+				quinta.style.display = "none";
+				sexta.style.display = "block";
+				sabado.style.display = "none";
+				domingo.style.display = "none";
+			}
+			else if (radios[i].checked == true && radios[i].value == "Sabado") {
+
+				segunda.style.display = "none";
+				terca.style.display = "none";
+				quarta.style.display = "none";
+				quinta.style.display = "none";
+				sexta.style.display = "none";
+				sabado.style.display = "block";
+				domingo.style.display = "none";
+			}
+			else if (radios[i].checked == true && radios[i].value == "Domingo") {
+
+				segunda.style.display = "none";
+				terca.style.display = "none";
+				quarta.style.display = "none";
+				quinta.style.display = "none";
+				sexta.style.display = "none";
+				sabado.style.display = "none";
+				domingo.style.display = "block";
+			}
+		}
+
 
 	}
+
+
 </script>

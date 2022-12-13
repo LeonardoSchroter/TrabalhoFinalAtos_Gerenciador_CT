@@ -33,7 +33,7 @@ namespace Gerenciador_CT
 
 			app.MapControllerRoute(
 				name: "default",
-				pattern: "{controller=Home}/{action=Index}/{id?}");
+				pattern: "{controller=Aulas}/{action=Index}/{id?}");
 
 			app.Run();
 		}

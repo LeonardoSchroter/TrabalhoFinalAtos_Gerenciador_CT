@@ -41,15 +41,16 @@ a {
 
 #footer2 {
     border-color: #b3b3b3 !important;
-    background-color: #313b3f;
+    background-color: #323031;
     color: #fff;
 }
 
 #header {
     border-bottom: solid;
     border-width: 1px;
+    color: #dde4de;
+    background-color: #323031 !important;
    
-    background-color: #313b3f !important;
 }
 
 
@@ -73,7 +74,7 @@ a {
 }
 
 .modal-body {
-    background-color: #ffffff;
+    background-color: #ffff;
 }
 
 
