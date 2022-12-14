@@ -54,7 +54,7 @@
 
 				@foreach (var item in Model.aulaLista)
 				{
-					if (item.FkHorarioNavigation.Dia == "Segunda-Feira")
+					if (item.FkHorarioNavigation.Dia == "Segunda-feira")
 					{
 
 
@@ -83,9 +83,11 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								<div class="btn-group">
+									<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp
+									<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> &nbsp
+									<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								</div>
 							</td>
 						</tr>
 					}
@@ -93,7 +95,7 @@
 			</tbody>
 		</table>
 		<br />
-		
+
 		<br />
 	</div>
 	<div id="terca">
@@ -147,9 +149,11 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								<div class="btn-group">
+									<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp
+									<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> &nbsp
+									<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								</div>
 							</td>
 						</tr>
 					}
@@ -157,7 +161,7 @@
 			</tbody>
 		</table>
 		<br />
-		
+
 		<br />
 	</div>
 
@@ -212,9 +216,11 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								<div class="btn-group">
+									<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp
+									<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> &nbsp
+									<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								</div>
 							</td>
 						</tr>
 					}
@@ -222,7 +228,7 @@
 			</tbody>
 		</table>
 		<br />
-		
+
 		<br />
 	</div>
 	<div id="quinta">
@@ -276,9 +282,11 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								<div class="btn-group">
+									<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp
+									<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> &nbsp
+									<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								</div>
 							</td>
 						</tr>
 					}
@@ -286,7 +294,7 @@
 			</tbody>
 		</table>
 		<br />
-		
+
 		<br />
 	</div>
 	<div id="sexta">
@@ -340,9 +348,11 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								<div class="btn-group">
+									<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp
+									<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> &nbsp
+									<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								</div>
 							</td>
 						</tr>
 					}
@@ -350,7 +360,7 @@
 			</tbody>
 		</table>
 		<br />
-		
+
 		<br />
 	</div>
 	<div id="sabado">
@@ -404,9 +414,11 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								<div class="btn-group">
+									<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp
+									<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> &nbsp
+									<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								</div>
 							</td>
 						</tr>
 					}
@@ -414,7 +426,7 @@
 			</tbody>
 		</table>
 		<br />
-		
+
 		<br />
 	</div>
 
@@ -471,9 +483,11 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> |
-								<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> |
-								<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								<div class="btn-group">
+									<a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/editar.png " alt="editar" width="25" /></a> &nbsp
+									<a class="btn btn-success btn-sm" asp-action="EditarAlunos" asp-route-id="@item.Id"><img src="~/Alunos.png" alt="alunos" width="25" /></a> &nbsp
+									<a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/excluir.png" alt="excluir" width="25" /></a>
+								</div>
 							</td>
 						</tr>
 					}

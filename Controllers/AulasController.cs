@@ -161,7 +161,12 @@ namespace Gerenciador_CT.Controllers
 		// GET: Aulas/Create
 		public IActionResult Create()
 		{
+			
+			List<Treinadore> treinadores = _context.Treinadores.ToList();
+			
+			
 
+			ViewBag.treinadoresSelectList = new SelectList(treinadores, "Id", "Nome");
 			return View();
 		}
 
@@ -176,7 +181,7 @@ namespace Gerenciador_CT.Controllers
 			{
 
 				reAula.aula.FkHorarioNavigation = reAula.horario;
-				reAula.aula.FkTreinadorNavigation = _context.Treinadores.FirstOrDefault(t => t.Nome.ToUpper() == reAula.treinador.Nome.ToUpper());
+				reAula.aula.FkTreinadorNavigation = _context.Treinadores.FirstOrDefault(t => t.Id == reAula.treinador.Id);
 				_context.Aulas.Add(reAula.aula);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));

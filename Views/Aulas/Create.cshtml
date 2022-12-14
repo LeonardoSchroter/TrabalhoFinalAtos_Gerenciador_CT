@@ -13,14 +13,14 @@
 	<form asp-action="Create">
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 		<div class="mb-3">
-			<label asp-for="treinador.Nome" class="control-label"></label>
-			<input asp-for="treinador.Nome" class="form-control" />
+			<label asp-for="treinador.Nome" class="control-label">Treinador</label>
+			@Html.DropDownListFor(model => model.treinador.Id,ViewBag.treinadoresSelectList as SelectList,"--Selecione o treinador--", new {@class = "form-control"})
 			<span asp-validation-for="treinador.Nome" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<label asp-for="horario.Dia" class="control-label"></label>
 
-			<select class="user-select-auto " asp-for="horario.Dia">
+			<select class="form-select" asp-for="horario.Dia">
 				<option value="Segunda-feira">Segunda-feira</option>
 				<option value="Terça-feira">Terça-feira</option>
 				<option value="Quarta-feira">Quarta-feira</option>
